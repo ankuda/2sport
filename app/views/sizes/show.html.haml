@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Width:
+  = @size.width
+%p
+  %b Height:
+  = @size.height
+%p
+  %b Length:
+  = @size.length
+
+= link_to 'Edit', edit_size_path(@size)
+\|
+= link_to 'Back', sizes_path

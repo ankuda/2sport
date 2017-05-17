@@ -1,0 +1,59 @@
+= form_for @product do |f|
+  - if @product.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+      %ul
+        - @product.errors.full_messages.each do |message|
+          %li= message
+
+  .col-md-5
+    .field
+      = f.label :title
+      = f.text_field :title, class: "form-control"
+    .field
+      = f.label :description
+      = f.text_area :description, class: "form-control"
+    .field
+      = f.label :price
+      = f.text_field :price, class: "form-control"
+    .field
+      = f.label :working_hours
+      = f.text_field :working_hours, class: "form-control"
+
+    .field
+      = f.label :category
+      = fields_for @product.category do |category_fields|
+        = category_fields.select :title, categories_for_product, {}, {class: "form-control"}
+
+      / = fields_for @product.category do |category_fields|
+      /   = category_fields.text_field :title, class: "form-control"
+    .field
+      = f.label :location
+      = fields_for @product.location.country do |country_fields|
+        = country_fields.label :title
+        = country_fields.text_field :title, class: "form-control"
+      = fields_for @product.location.city do |city_fields|
+        = city_fields.label :title
+        = city_fields.text_field :title, class: "form-control"
+      = fields_for @product.location do |location_fields|
+        = location_fields.label :address
+        = location_fields.text_field :address, class: "form-control"
+    .field
+      = f.label :size
+      = fields_for @product.size do |size_fields|
+        = size_fields.label :width
+        = size_fields.text_field :width, class: "form-control"
+        = size_fields.label :length
+        = size_fields.text_field :length, class: "form-control"
+        = size_fields.label :height
+        = size_fields.text_field :height, class: "form-control"
+    .field
+      = f.label :cover
+      = fields_for @product.cover do |ctype_fields|
+        = ctype_fields.text_field :ctype, class: "form-control"
+    .field
+      = f.label :building
+      = fields_for @product.building do |btype_fields|
+        = btype_fields.text_field :btype, class: "form-control"
+    .actions
+      = f.submit 'Save', class: "btn btn-default"

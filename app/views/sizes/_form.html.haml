@@ -1,0 +1,19 @@
+= form_for @size do |f|
+  - if @size.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@size.errors.count, "error")} prohibited this size from being saved:"
+      %ul
+        - @size.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :width
+    = f.number_field :width
+  .field
+    = f.label :height
+    = f.number_field :height
+  .field
+    = f.label :length
+    = f.number_field :length
+  .actions
+    = f.submit 'Save'

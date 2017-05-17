@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Type:
+  = @building.type
+
+= link_to 'Edit', edit_building_path(@building)
+\|
+= link_to 'Back', buildings_path

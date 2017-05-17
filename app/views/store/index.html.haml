@@ -1,0 +1,71 @@
+%h1 Каталог спортивных площадок
+
+.row
+  .col-md-10
+    - cache @products do
+      - @products.each do |product|
+        - cache @products do
+          .col-md-12
+            .row
+              .sg
+                /= image_tag(product.image_url)
+                %img{alt: "", src: "http://placehold.it/320x150"}
+
+                .caption
+                  .sportground_description
+                    %h4
+                      = link_to product.title, product
+                    %p
+                      = product.category.title
+                    %p
+                      = product.description
+                    %p
+                      = product.cover.ctype
+                    %p
+                      = product.size.width
+                      = product.size.length
+                      = product.size.height
+                  .sportground_info
+                    %h4.pull-right Цена от #{product.price}руб./ч.
+
+                .manage_links
+                  = link_to 'Edit', edit_product_path(product), class: "btn btn-default"
+                  = link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default"
+
+  .col-md-2
+
+/ %table
+/   %thead
+/     %tr
+/       %th Title
+/       %th Description
+/       %th Price
+/       %th Working hours
+/       %th Category
+/       %th Location
+/       %th Size
+/       %th Cover
+/       %th Building
+/       %th
+/       %th
+/       %th
+
+/   %tbody
+/     - @products.each do |product|
+/       %tr
+/         %td= product.title
+/         %td= product.description
+/         %td= product.price
+/         %td= product.working_hours
+/         %td= product.category.title
+/         %td= product.location
+/         %td= product.size.width
+/         %td= product.cover.ctype
+/         %td= product.building
+/         %td= link_to 'Show', product
+/         %td= link_to 'Edit', edit_product_path(product)
+/         %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
+
+/ %br
+
+/ = link_to 'New Product', new_product_path

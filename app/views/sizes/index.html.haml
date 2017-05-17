@@ -1,0 +1,25 @@
+%h1 Listing sizes
+
+%table
+  %thead
+    %tr
+      %th Width
+      %th Height
+      %th Length
+      %th
+      %th
+      %th
+
+  %tbody
+    - @sizes.each do |size|
+      %tr
+        %td= size.width
+        %td= size.height
+        %td= size.length
+        %td= link_to 'Show', size
+        %td= link_to 'Edit', edit_size_path(size)
+        %td= link_to 'Destroy', size, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Size', new_size_path
