@@ -12,8 +12,8 @@
     = render 'layouts/header'
 
     .container
-      #book
-        - if @book
+      - if @book
+        = hidden_div_if(@book.line_items.empty?, id: 'book') do
           = render @book
 
     .container

@@ -42,7 +42,6 @@ gem 'pry-rails', :group => :development
 gem 'railroady'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 group :development, :test do
