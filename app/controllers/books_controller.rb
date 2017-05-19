@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  layout 'booking'
+
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_book
   # GET /books
   # GET /books.json
@@ -57,7 +59,7 @@ class BooksController < ApplicationController
     @book.destroy if @book.id == session[:book_id]
     session[:book_id] = nil
     respond_to do |format|
-      format.html { redirect_to store_index_url,
+      format.html { redirect_to root_url,
         notice: 'Your cart is currently empty' }
       format.json { head :no_content }
     end
@@ -76,6 +78,6 @@ class BooksController < ApplicationController
 
     def invalid_book
       logger.error "Attempt to access invalid book #{params[:id]}"
-      redirect_to store_index_url, notice: 'Invalid cart'
+      redirect_to root_url, notice: 'Invalid cart'
     end
 end

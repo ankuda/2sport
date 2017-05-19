@@ -1,11 +1,34 @@
-- unless book.line_items.empty?
-  %h2 Your Cart
+%p#notice= notice
 
-  %table
-    = render(book.line_items)
-
-    %tr.total_line
-      %td{colspan: "2"} Total
-      %td.total_cell= number_to_currency(book.total_price)
-
-  = button_to 'Empty cart', book, method: :delete, data: { confirm: 'Are you sure?' }
+%h1
+  = @book.product.title
+%p
+  %b Description:
+  = @book.product.description
+%p
+  %b Price:
+  = @book.product.price
+%p
+  %b Working hours:
+  = @book.product.working_hours
+%p
+  %b Category:
+  = @book.product.category.title
+%p
+  %b Location:
+  = @book.product.location.country.title
+  = @book.product.location.city.title
+  = @book.product.location.address
+%p
+  %b Size:
+  = @book.product.size.width
+  \x
+  = @book.product.size.length
+  \x
+  = @book.product.size.height
+%p
+  %b Cover:
+  = @book.product.cover.ctype
+%p
+  %b Building:
+  = @book.product.building.btype

@@ -1,0 +1,18 @@
+
+
+%nav.navbar.navbar-default
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      .navbar-brand{:href => "/"} Admin Panel
+      = link_to 'Dashboard', admin_dashboard_index_path
+      = link_to 'Products', admin_products_path
+      = link_to 'Categories', admin_categories_path
+      = link_to 'Back to site', root_path
+
+      = render 'common/logout_link'

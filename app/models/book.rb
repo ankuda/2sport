@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  has_many :line_items, dependent: :destroy
+  belongs_to :product
 
   def add_product(product)
     current_item = line_items.find_by(product_id: product.id)

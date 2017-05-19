@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root 'store#index', as: 'store_index'
-  resources :line_items
+
+  devise_for :users, path: '', path_names: { sign_in: 'administration', sign_out: 'logout'}
+
   resources :books
   resources :cities
   resources :countries
@@ -10,6 +11,18 @@ Rails.application.routes.draw do
   resources :locations
   resources :categories
   resources :products
+
+  namespace :admin do
+    root 'dashboard#index'
+    resources :dashboard, only: :index
+    resources :products
+    resources :categories
+  end
+
+
+  get '/admin', to: redirect('/admin/dashboard')
+
+  root 'store#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
