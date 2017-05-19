@@ -1,0 +1,34 @@
+%p#notice= notice
+
+%h1
+  = product.title
+%p
+  %b Description:
+  = product.description
+%p
+  %b Price:
+  = product.price
+%p
+  %b Working hours:
+  = product.working_hours
+%p
+  %b Category:
+  = product.category.title
+%p
+  %b Location:
+  = product.location.country.title
+  = product.location.city.title
+  = product.location.address
+%p
+  %b Size:
+  = product.size.width
+  \x
+  = product.size.length
+  \x
+  = product.size.height
+%p
+  %b Cover:
+  = product.cover.ctype
+%p
+  %b Building:
+  = product.building.btype

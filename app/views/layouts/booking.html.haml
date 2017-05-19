@@ -11,10 +11,5 @@
   %body
     = render 'layouts/header'
 
-    -#.container
-    -#  - if @book
-    -#    = hidden_div_if(@book.empty?, id: 'book') do
-    -#      = render @book
-
     .container
       = yield

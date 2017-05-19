@@ -72,6 +72,9 @@ product_list.each do |p|
   p = Product.create( title: p[0], category_id: c_id, price: p[2], description: p[3], working_hours: p[4], size_id: s_id, cover_id: cover_id, building_id: building_id, location_id: location_id )
 end
 
+User.delete_all
+User.create(email: 'admin@example.com', password: 'admin', password_confirmation: 'admin')
+
 # Cover.find_by_ctype("grass").id
 # country_list = [
 #   [ "Belarus", "Минск", ],
