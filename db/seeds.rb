@@ -18,9 +18,6 @@ category_list.each do |c|
   Category.create( title: c )
 end
 
-size_list = %w(30 20 10)
-Size.create( width: size_list[0], height: size_list[1], length: size_list[2] )
-
 cover_list = %w(grass parquet)
 cover_list.each do |c|
   Cover.create( ctype: c )
@@ -59,17 +56,16 @@ location_list.each do |country, city, address|
 end
 
 product_list = [
-  [ "Футбольный манеж", "football", "20", "На первом этаже здания размещаются гардероби технические помещения.", "09:00-19:00", "grass", "indoor", "av.Victories 22"],
-  [ "ФОК Серебрянка", "hockey", "15", "В манеже действую две сауны с массажными помещениями и микробассейнами.", "10:00-20:00", "parquet", "outdoor", "st.Rokossovskogo 88"]
+  [ "Футбольный манеж", "football", "20", "На первом этаже здания размещаются гардероби технические помещения.", "09:00-19:00", "grass", "indoor", "av.Victories 22", "30", "20", "10"],
+  [ "ФОК Серебрянка", "hockey", "15", "В манеже действую две сауны с массажными помещениями и микробассейнами.", "10:00-20:00", "parquet", "outdoor", "st.Rokossovskogo 88", "1", "2", "3"]
 ]
 
 product_list.each do |p|
   c_id = Category.find_by_title( p[1] ).id
-  s_id = 1
   cover_id = Cover.find_by_ctype( p[5] ).id
   building_id = Building.find_by_btype( p[6] ).id
   location_id = Location.find_by_address( p[7] ).id
-  p = Product.create( title: p[0], category_id: c_id, price: p[2], description: p[3], working_hours: p[4], size_id: s_id, cover_id: cover_id, building_id: building_id, location_id: location_id )
+  p = Product.create( title: p[0], category_id: c_id, price: p[2], description: p[3], working_hours: p[4], cover_id: cover_id, building_id: building_id, location_id: location_id, width: p[8], height: p[9], length: p[10] )
 end
 
 User.delete_all

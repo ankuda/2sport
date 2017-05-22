@@ -27,6 +27,11 @@
 
     .field
       = f.label :location
+      / = f.fields_for :location, object(@product, 'location') do |location_fields|
+      /   = location_fields.fields_for :country, object(location_fields.object, 'country') do |country_fields|
+      /     = country_fields.select :country, countries_for_product, {}, {class: 'form-control'}
+
+      = f.label :location
       = f.fields_for :location, object(@product, 'location') do |location_fields|
         = location_fields.fields_for :country, object(location_fields.object, 'country') do |country_fields|
           = country_fields.label :title
@@ -39,19 +44,22 @@
         = location_fields.text_field :address, class: 'form-control'
 
     .field
-      = f.label :height
-      = f.text_field :height, class: 'form-control'
-    .field
-      = f.label :width
-      = f.text_field :width, class: 'form-control'
-    .field
-      = f.label :length
+      = f.label "Длина"
       = f.text_field :length, class: 'form-control'
     .field
-      = f.label :ctype
-      = f.text_field :ctype, class: 'form-control'
+      = f.label "Ширина"
+      = f.text_field :width, class: 'form-control'
     .field
-      = f.label :btype
-      = f.text_field :btype, class: 'form-control'
+      = f.label "Высота"
+      = f.text_field :height, class: 'form-control'
+      
+    .field
+      = f.label :cover
+      = f.fields_for :cover, object(@product, 'cover') do |ctype_fields|
+        = ctype_fields.text_field :ctype, class: 'form-control'
+    .field
+      = f.label :building
+      = f.fields_for :building, object(@product, 'building') do |btype_fields|
+        = btype_fields.text_field :btype, class: 'form-control'
     .actions
       = f.submit 'Save', class: 'btn btn-default'

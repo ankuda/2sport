@@ -70,7 +70,9 @@ ActiveRecord::Schema.define(version: 20170519112826) do
     t.string   "working_hours"
     t.integer  "category_id"
     t.integer  "location_id"
-    t.integer  "size_id"
+    t.string   "width"
+    t.string   "height"
+    t.string   "length"
     t.integer  "cover_id"
     t.integer  "building_id"
     t.datetime "created_at",    null: false
@@ -79,15 +81,6 @@ ActiveRecord::Schema.define(version: 20170519112826) do
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["cover_id"], name: "index_products_on_cover_id"
     t.index ["location_id"], name: "index_products_on_location_id"
-    t.index ["size_id"], name: "index_products_on_size_id"
-  end
-
-  create_table "sizes", force: :cascade do |t|
-    t.integer  "width"
-    t.integer  "height"
-    t.integer  "length"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,7 +90,6 @@ ActiveRecord::Schema.define(version: 20170519112826) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index [nil], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

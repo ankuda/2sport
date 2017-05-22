@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :countries
   resources :buildings
   resources :covers
-  resources :sizes
   resources :locations
   resources :categories
   resources :products

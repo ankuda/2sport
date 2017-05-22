@@ -20,9 +20,9 @@
                 %p
                   = product.cover.ctype
                 %p
-                  = product.size.width
-                  = product.size.length
-                  = product.size.height
+                  = product.length
+                  = product.width
+                  = product.height
               .sportground_info
                 %h4.pull-right Цена от #{product.price}руб./ч.
 
@@ -57,7 +57,7 @@
 /         %td= product.working_hours
 /         %td= product.category.title
 /         %td= product.location
-/         %td= product.size.width
+/         %td= product.width
 /         %td= product.cover.ctype
 /         %td= product.building
 /         %td= link_to 'Show', product
