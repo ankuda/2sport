@@ -39,21 +39,19 @@
         = location_fields.text_field :address, class: 'form-control'
 
     .field
-      = f.label :size
-      = f.fields_for :size, object(@product, 'size') do |size_fields|
-        = size_fields.label :width
-        = size_fields.text_field :width, class: 'form-control'
-        = size_fields.label :length
-        = size_fields.text_field :length, class: 'form-control'
-        = size_fields.label :height
-        = size_fields.text_field :height, class: 'form-control'
+      = f.label :height
+      = f.text_field :height, class: 'form-control'
     .field
-      = f.label :cover
-      = f.fields_for :cover, object(@product, 'cover') do |ctype_fields|
-        = ctype_fields.text_field :ctype, class: 'form-control'
+      = f.label :width
+      = f.text_field :width, class: 'form-control'
     .field
-      = f.label :building
-      = f.fields_for :building, object(@product, 'building') do |btype_fields|
-        = btype_fields.text_field :btype, class: 'form-control'
+      = f.label :length
+      = f.text_field :length, class: 'form-control'
+    .field
+      = f.label :ctype
+      = f.text_field :ctype, class: 'form-control'
+    .field
+      = f.label :btype
+      = f.text_field :btype, class: 'form-control'
     .actions
       = f.submit 'Save', class: 'btn btn-default'

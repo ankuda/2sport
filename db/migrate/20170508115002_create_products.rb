@@ -7,9 +7,12 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :working_hours
       t.references :category, foreign_key: true
       t.references :location, foreign_key: true
-      t.references :size, foreign_key: true
-      t.references :cover, foreign_key: true
-      t.references :building, foreign_key: true
+      t.string :width
+      t.string :height
+      t.string :length
+
+      t.string :btype
+      t.string :ctype
 
       t.timestamps
     end
