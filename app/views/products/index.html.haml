@@ -2,9 +2,9 @@
 
 .row
   .col-md-10
-    - @products.each do |product|
-      .col-md-12
-        .row
+    .col-md-12
+      .row
+        - @products.each do |product|
           .sg
             /= image_tag(product.image_url)
             %img{alt: "", src: "http://placehold.it/320x150"}

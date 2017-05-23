@@ -1,40 +1,90 @@
-%p#notice= notice
+.product_wrapper.clearfix
+  %p#notice= notice
 
-%h1
-  = @product.title
-%p
-  %b Description:
-  = @product.description
-%p
-  %b Price:
-  = @product.price
-%p
-  %b Working hours:
-  = @product.working_hours
-%p
-  %b Category:
-  = @product.category.title
-%p
-  %b Location:
-  = @product.location.country.title
-  = @product.location.city.title
-  = @product.location.address
-%p
-  %b Size:
-  = product.length
-  \x
-  = product.width
-  \x
-  = product.height
-%p
-  %b Cover:
-  = @product.cover.ctype
-%p
-  %b Building:
-  = @product.building.btype
-- if current_user
-  = link_to 'Edit', edit_admin_product_path(@product)
-  \|
-= link_to 'Order', new_book_path
-\|
-= link_to 'Back', root_path
+  .product_description.clearfix
+    %h1
+      = link_to 'Back', root_path, class: "btn btn-default"
+      = @product.title
+
+    .col-md-6
+      .row 
+        %p
+          %b Адрес:
+          = @product.location.country.title
+          = @product.location.city.title
+          = @product.location.address
+
+          %b Часы работы:
+          = @product.working_hours
+
+        .single-item
+          %div= image_tag("product_images/maneg_1.jpg")
+          %div= image_tag("product_images/maneg_2.jpg")
+          %div= image_tag("product_images/maneg_3.jpg")
+
+    .col-md-5.col-md-offset-1
+      .row
+        %p
+          %b Вид спорта:
+          = @product.category.title
+
+        %p
+          %b Размеры:
+          = @product.length
+          \x
+          = @product.width
+          \x
+          = @product.height
+
+        %p
+          %b Покрытие:
+          = @product.cover.ctype
+
+        %p
+          %b Тип площадки:
+          = @product.building.btype
+
+        %p
+          %b Часы работы:
+          = @product.working_hours
+
+    .col-md-12
+      .row 
+        = @product.description
+
+  - if current_user
+    = link_to 'Edit', edit_admin_product_path(@product)
+    \|
+  = link_to 'Забронировать', new_book_path, class: "btn order pull-right"
+
+
+  / %p
+  /   %b Description:
+  /   = @product.description
+  / %p
+  /   %b Price:
+  /   = @product.price
+  / %p
+  /   %b Working hours:
+  /   = @product.working_hours
+  / %p
+  /   %b Category:
+  /   = @product.category.title
+  / %p
+  /   %b Location:
+  /   = @product.location.country.title
+  /   = @product.location.city.title
+  /   = @product.location.address
+  / %p
+  /   %b Size:
+  /   = @product.length
+  /   \x
+  /   = @product.width
+  /   \x
+  /   = @product.height
+  / %p
+  /   %b Cover:
+  /   = @product.cover.ctype
+  / %p
+  /   %b Building:
+  /   = @product.building.btype
