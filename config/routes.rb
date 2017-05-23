@@ -2,14 +2,15 @@ Rails.application.routes.draw do
 
   devise_for :users, path: '', path_names: { sign_in: 'administration', sign_out: 'logout'}
 
-  resources :books
   resources :cities
   resources :countries
   resources :buildings
   resources :covers
   resources :locations
   resources :categories
-  resources :products
+  resources :products do
+    resources :books
+  end
 
   namespace :admin do
     root 'dashboard#index'

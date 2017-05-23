@@ -14,6 +14,11 @@ ActiveRecord::Schema.define(version: 20170519112826) do
 
   create_table "books", force: :cascade do |t|
     t.integer  "product_id"
+    t.string   "year"
+    t.string   "month"
+    t.string   "day"
+    t.string   "hours"
+    t.string   "minutes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_books_on_product_id"
@@ -70,9 +75,9 @@ ActiveRecord::Schema.define(version: 20170519112826) do
     t.string   "working_hours"
     t.integer  "category_id"
     t.integer  "location_id"
+    t.string   "length"
     t.string   "width"
     t.string   "height"
-    t.string   "length"
     t.integer  "cover_id"
     t.integer  "building_id"
     t.datetime "created_at",    null: false

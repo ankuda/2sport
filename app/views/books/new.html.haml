@@ -1,8 +1,12 @@
-%h1 New book
+%h1 Оформление заказа
 
--#= render 'form'
--#
--#= link_to 'Back', books_path
+= render '/products/product', product: @product
 
+= form_for [@product, @book] do |f|
+    = f.hidden_field :year
+    = f.hidden_field :month
+    = f.hidden_field :day
+    = f.hidden_field :hours
+    = f.hidden_field :minutes
 
-= link_to 'Place Order', '#'
+    = f.submit 'Разместить заказ'
