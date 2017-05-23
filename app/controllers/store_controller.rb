@@ -1,5 +1,6 @@
 class StoreController < ApplicationController
+
   def index
-    @products = Product.order(:title)
+    @products = Product.includes(:cover, :category).order(:title)
   end
 end

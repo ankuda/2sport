@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   belongs_to :cover
   belongs_to :building
 
-  has_many   :book
+  has_many   :books
 
   accepts_nested_attributes_for :category
   accepts_nested_attributes_for :location
@@ -14,6 +14,10 @@ class Product < ApplicationRecord
   before_destroy :ensure_not_referenced_by_any_line_item
 
   validates :title, presence: true
+
+  def size
+    "#{height}x#{width}x#{length}"
+  end
 
   private
     def ensure_not_referenced_by_any_line_item

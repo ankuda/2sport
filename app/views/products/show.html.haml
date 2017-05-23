@@ -55,7 +55,7 @@
   - if current_user
     = link_to 'Edit', edit_admin_product_path(@product)
     \|
-  = link_to 'Забронировать', new_book_path, class: "btn order pull-right"
+  = link_to 'Забронировать', new_product_book_path(@product), class: "btn order pull-right"
 
 
   / %p
