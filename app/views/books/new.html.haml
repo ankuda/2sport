@@ -3,10 +3,31 @@
 = render '/products/product', product: @product
 
 = form_for [@product, @book] do |f|
-    = f.hidden_field :year
-    = f.hidden_field :month
-    = f.hidden_field :day
-    = f.hidden_field :hours
-    = f.hidden_field :minutes
+  %table
+    %tr
+      = f.label :comment
+      = f.text_area :comment
+      %br
 
-    = f.submit 'Разместить заказ'
+      = f.label :name
+      = f.text_field :name
+
+      - @product.seven_days.to_a.each do |day|
+        %td
+          %br
+            = day
+          - @product.working_hours.times do |i|
+            %br
+              = f.fields_for :reservations, f.object.reservations.new do |reservation_field|
+                = reservation_field.hidden_field :product_id, value: @product.id
+                = reservation_field.label time_cell(@product.start_working, i)
+                = reservation_field.check_box :time, { class: '' }, "#{day} #{@product.start_working + i.hours}", nil
+
+  = f.submit 'Разместить заказ'
+-#= f.hidden_field :year
+-#= f.hidden_field :month
+-#= f.hidden_field :day
+-#= f.hidden_field :hours
+-#= f.hidden_field :minutes
+-#
+

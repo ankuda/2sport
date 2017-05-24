@@ -1,38 +1,23 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
-
-  rescue_from ActiveRecord::RecordNotFound, with: :invalid_book
-
-  def index
-    @books = Book.all
-  end
+  before_action :set_book, only: [:show, :edit]
 
   def show
   end
 
   def new
     @product = Product.find(params[:product_id])
-    @book = @product.books.new
-  end
-
-  def edit
+    @book = Book.new
   end
 
   def create
     binding.pry
-    @book = Book.new(book_params)
-    if @book.save
-      redirect_to @book, notice: 'Book was successfully created.'
+    @product = Product.find(params[:product_id])
+    @book = @product.books.new(book_params)
+
+    if @product.save
+      redirect_to product_book_path(@product, @book), notice: 'Book was successfully created.'
     else
       render :new
-    end
-  end
-
-  def update
-    if @book.update(book_params)
-      redirect_to @book, notice: 'Book was successfully updated.'
-    else
-      render :edit
     end
   end
 
@@ -44,7 +29,14 @@ class BooksController < ApplicationController
 
 
     def book_params
-      params.require(:book).permit(:product_id)
+      params.require(:book).permit(:name,
+                                   :comment,
+                                   :product_id,
+                                   reservations_attributes: [
+                                       :id,
+                                       :time,
+                                       :product_id
+                                   ])
     end
 
     def invalid_book

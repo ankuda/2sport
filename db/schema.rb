@@ -10,18 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170519112826) do
+ActiveRecord::Schema.define(version: 20170523184801) do
 
   create_table "books", force: :cascade do |t|
-    t.integer  "product_id"
-    t.string   "year"
-    t.string   "month"
-    t.string   "day"
-    t.string   "hours"
-    t.string   "minutes"
+    t.string   "name"
+    t.text     "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_books_on_product_id"
   end
 
   create_table "buildings", force: :cascade do |t|
@@ -72,7 +67,8 @@ ActiveRecord::Schema.define(version: 20170519112826) do
     t.string   "title"
     t.text     "description"
     t.decimal  "price"
-    t.string   "working_hours"
+    t.string   "start_working"
+    t.string   "end_working"
     t.integer  "category_id"
     t.integer  "location_id"
     t.string   "length"
@@ -86,6 +82,16 @@ ActiveRecord::Schema.define(version: 20170519112826) do
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["cover_id"], name: "index_products_on_cover_id"
     t.index ["location_id"], name: "index_products_on_location_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.string   "time"
+    t.integer  "book_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_reservations_on_book_id"
+    t.index ["product_id"], name: "index_reservations_on_product_id"
   end
 
   create_table "users", force: :cascade do |t|

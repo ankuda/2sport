@@ -15,7 +15,8 @@
           = @product.location.address
 
           %b Часы работы:
-          = @product.working_hours
+          = @product.start_working
+          = @product.end_working
 
         .single-item
           %div= image_tag("product_images/maneg_1.jpg")
@@ -46,7 +47,8 @@
 
         %p
           %b Часы работы:
-          = @product.working_hours
+          = @product.start_working
+          = @product.end_working
 
     .col-md-12
       .row 

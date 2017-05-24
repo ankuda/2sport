@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: :index
     resources :products
     resources :categories
+    resources :books
   end
 
 
