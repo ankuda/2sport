@@ -1,5 +1,4 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit]
 
   def show
   end
@@ -10,11 +9,10 @@ class BooksController < ApplicationController
   end
 
   def create
-    binding.pry
     @product = Product.find(params[:product_id])
     @book = @product.books.new(book_params)
 
-    if @product.save
+    if @book.save
       redirect_to product_book_path(@product, @book), notice: 'Book was successfully created.'
     else
       render :new
@@ -37,6 +35,14 @@ class BooksController < ApplicationController
                                        :time,
                                        :product_id
                                    ])
+    end
+
+    def filter_params
+      params[:book][:reservations_attributes].each do |k, v|
+        params[:book][:reservations_attributes].delete(k) if v[:time].nil?
+      end
+
+      binding.pry
     end
 
     def invalid_book

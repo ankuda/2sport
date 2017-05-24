@@ -5,7 +5,7 @@
         %tr
           = product.title
         %tr
-          = product.books.each do |book|
+          - product.books.uniq.each do |book|
             %p
               Имя:
               = book.name
@@ -13,6 +13,6 @@
               Коммент:
               = book.comment
 
-            - book.reservations.each_with_index do |reservation, i|
-              = time_cell(reservation.time, i + 1)
+            - book.reservations.each do |reservation|
+              = time_cell(reservation.time, 0)
               %br

@@ -2,19 +2,11 @@ class Book < ApplicationRecord
   has_many :reservations
   has_many :products, through: :reservations
 
-  accepts_nested_attributes_for :reservations
+  accepts_nested_attributes_for :reservations, reject_if: :time_blank?
 
-  def add_product(product)
-    current_item = line_items.find_by(product_id: product.id)
-    if current_item
-      current_item.quantity += 1
-    else
-      current_item = line_items.build(product_id: product.id)
-    end
-    current_item
-  end
+  private
 
-  def total_price
-    line_items.to_a.sum{ |item| item.total_price }
+  def time_blank?(attrs)
+    attrs['time'].blank? && new_record?
   end
 end
