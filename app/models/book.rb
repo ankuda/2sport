@@ -1,5 +1,8 @@
 class Book < ApplicationRecord
-  belongs_to :product
+  has_many :reservations
+  has_many :products, through: :reservations
+
+  accepts_nested_attributes_for :reservations
 
   def add_product(product)
     current_item = line_items.find_by(product_id: product.id)

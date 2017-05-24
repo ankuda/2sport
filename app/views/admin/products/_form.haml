@@ -17,8 +17,11 @@
       = f.label :price
       = f.text_field :price, class: 'form-control'
     .field
-      = f.label :working_hours
-      = f.text_field :working_hours, class: 'form-control'
+      = f.label :start_working
+      = f.time_field :start_working, class: 'form-control'
+    .field
+      = f.label :end_working
+      = f.time_field :end_working, class: 'form-control'
 
     .field
       = f.label :category

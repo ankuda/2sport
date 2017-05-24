@@ -1,0 +1,18 @@
+%table
+  %tr
+    - @products.each do |product|
+      %td
+        %tr
+          = product.title
+        %tr
+          = product.books.each do |book|
+            %p
+              Имя:
+              = book.name
+            %p
+              Коммент:
+              = book.comment
+
+            - book.reservations.each_with_index do |reservation, i|
+              = time_cell(reservation.time, i + 1)
+              %br
