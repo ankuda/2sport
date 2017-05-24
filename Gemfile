@@ -38,7 +38,7 @@ gem 'devise'
 gem 'haml-rails'
 gem 'bootstrap-sass'
 
-gem 'pry-rails', :group => :development
+gem 'pry-byebug', :group => :development
 
 gem 'railroady'
 

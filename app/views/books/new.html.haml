@@ -21,7 +21,7 @@
               = f.fields_for :reservations, f.object.reservations.new do |reservation_field|
                 = reservation_field.hidden_field :product_id, value: @product.id
                 = reservation_field.label time_cell(@product.start_working, i)
-                = reservation_field.check_box :time, { class: '' }, "#{day} #{@product.start_working + i.hours}", nil
+                = reservation_field.check_box :time, { disabled: unavailable_time?(day, time_cell(@product.start_working, i)) }, "#{day} #{@product.start_working + i.hours}", nil
 
   = f.submit 'Разместить заказ'
 -#= f.hidden_field :year
