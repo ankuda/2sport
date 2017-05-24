@@ -1,30 +1,38 @@
-%h1 Оформление заказа
+.book_wrapper.clearfix
+  = form_for [@product, @book] do |f|
+    .book_info.container.clearfix
+      %h1 Оформление заказа
+      .col-md-6
+        .row
+          = render '/products/product', product: @product
+      .col-md-6
+        .row
+          %h2 На кого оформлять бронирование?
+          %p
+            %label Как вас зовут?
+            = f.text_field :name, class: "form-control", placeholder: "Имя"
+          %p
+            %label Вы можете оставить комментарий.
+            = f.text_area :comment, class: "form-control", placeholder: "Комментарий"
 
-= render '/products/product', product: @product
+    .book_time_wrapper
+      %h2.container Выберите удобное время для занятий и нажмите "Забронировать"
 
-= form_for [@product, @book] do |f|
-  .book_wrapper
-    = f.label :comment
-    = f.text_area :comment, class: "form-control"
-    %br
+      .book_time_table.container
+        - @product.seven_days.to_a.each do |day|
+          .book_day_wrapper
+            .book_day_title
+              = day
+            - @product.working_hours.times do |i|
+              = f.fields_for :reservations, f.object.reservations.new do |reservation_field|
+                %label.book_time
+                  = reservation_field.hidden_field :product_id, value: @product.id
+                  = reservation_field.check_box :time, { class: '' }, "#{day} #{@product.start_working + i.hours}", nil
+                  %i.glyphicon.glyphicon-ok
+                  = content_tag :span, time_cell(@product.start_working, i)
 
-    = f.label :name
-    = f.text_field :name, class: "form-control"
-
-    .book_time_table
-      - @product.seven_days.to_a.each do |day|
-        .book_day_wrapper
-          .book_day_title
-            = day
-          - @product.working_hours.times do |i|
-            = f.fields_for :reservations, f.object.reservations.new do |reservation_field|
-              %label.book_time
-                = reservation_field.hidden_field :product_id, value: @product.id
-                = reservation_field.check_box :time, { class: '' }, "#{day} #{@product.start_working + i.hours}", nil
-                %i.glyphicon.glyphicon-ok
-                = content_tag :span, time_cell(@product.start_working, i)
-
-  = f.submit 'Разместить заказ', class: 'btn order'
+    .container
+      = f.submit 'Разместить заказ', class: 'btn order'
 -#= f.hidden_field :year
 -#= f.hidden_field :month
 -#= f.hidden_field :day

@@ -1,59 +1,60 @@
-%h1 Каталог спортивных площадок
+.container
+  %h1 Каталог спортивных площадок
 
-.row
-  .col-md-10
-    .col-md-12
+  .row
+    .col-md-10
+      .col-md-12
+        .row
+          - cache @products do
+            - @products.each do |product|
+              - cache @products do
+                .sg
+                  /= image_tag(product.image_url)
+                  %img{alt: "", src: "http://placehold.it/320x150"}
+
+                  .caption
+                    .sportground_description
+                      %h4
+                        = link_to product.title, product, class: "product-title"
+                      %p
+                        = product.category.title
+                      %p
+                        = product.description
+                      %p.product-cover-title{ data: {cover: "#{product.cover.id}"}}
+                        = product.cover.ctype
+                      %p
+                        = product.length
+                        \x
+                        = product.width
+                        \x
+                        = product.height
+                    .sportground_info
+                      %h4.pull-right Цена от #{product.price}руб./ч.
+                  - if current_user
+                    .manage_links
+                      = link_to 'Edit', edit_admin_product_path(product), class: "btn btn-default"
+                      = link_to 'Destroy', admin_product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default"
+
+          .msg-empty-search.hide
+            К сожалению, данной площадки у нас нету.
+
+    .col-md-2
       .row
-        - cache @products do
-          - @products.each do |product|
-            - cache @products do
-              .sg
-                /= image_tag(product.image_url)
-                %img{alt: "", src: "http://placehold.it/320x150"}
+        .filters_wrapper
+          .filter_category
+            %p Выберите вид спорта
+            - @products.each do |product|
+              %div
+                %label
+                  = product.category.title
 
-                .caption
-                  .sportground_description
-                    %h4
-                      = link_to product.title, product, class: "product-title"
-                    %p
-                      = product.category.title
-                    %p
-                      = product.description
-                    %p.product-cover-title{ data: {cover: "#{product.cover.id}"}}
-                      = product.cover.ctype
-                    %p
-                      = product.length
-                      \x
-                      = product.width
-                      \x
-                      = product.height
-                  .sportground_info
-                    %h4.pull-right Цена от #{product.price}руб./ч.
-                - if current_user
-                  .manage_links
-                    = link_to 'Edit', edit_admin_product_path(product), class: "btn btn-default"
-                    = link_to 'Destroy', admin_product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default"
-
-        .msg-empty-search.hide
-          К сожалению, данной площадки у нас нету.
-
-  .col-md-2
-    .row
-      .filters_wrapper
-        .filter_category
-          %p Выберите вид спорта
-          - @products.each do |product|
-            %div
-              %label
-                = product.category.title
-
-        .filter_cover
-          %p Покрытие
-          - @products.each do |product|
-            %div
-              %label
-                = check_box_tag "cover_#{product.cover.id}", "#{product.cover.id}", false
-                = product.cover.ctype
+          .filter_cover
+            %p Покрытие
+            - @products.each do |product|
+              %div
+                %label
+                  = check_box_tag "cover_#{product.cover.id}", "#{product.cover.id}", false
+                  = product.cover.ctype
 / %table
 /   %thead
 /     %tr

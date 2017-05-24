@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  $('.single-item').slick();
+  if ( $('.single-item').length > 0)
+    $('.single-item').slick();
   
   const msgEmprySearch = document.querySelector('.msg-empty-search');
 

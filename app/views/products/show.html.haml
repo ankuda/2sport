@@ -1,4 +1,4 @@
-.product_wrapper.clearfix
+.product_wrapper.clearfix.container
   %p#notice= notice
 
   .product_description.clearfix
@@ -7,17 +7,7 @@
       = @product.title
 
     .col-md-6
-      .row 
-        %p
-          %b Адрес:
-          = @product.location.country.title
-          = @product.location.city.title
-          = @product.location.address
-
-          %b Часы работы:
-          = @product.start_working
-          = @product.end_working
-
+      .row
         .single-item
           %div= image_tag("product_images/maneg_1.jpg")
           %div= image_tag("product_images/maneg_2.jpg")
@@ -25,30 +15,40 @@
 
     .col-md-5.col-md-offset-1
       .row
-        %p
-          %b Вид спорта:
-          = @product.category.title
+        .product_desctiption_title
+          %p 
+            Вид спорта:
+            %span= @product.category.title
 
-        %p
-          %b Размеры:
-          = @product.length
-          \x
-          = @product.width
-          \x
-          = @product.height
+          %p 
+            Размеры площадки:
+            %span
+              = @product.length
+              \x
+              = @product.width
+              \x
+              = @product.height
 
-        %p
-          %b Покрытие:
-          = @product.cover.ctype
+          %p 
+            Адрес:
+            %span
+              = @product.location.country.title
+              = @product.location.city.title
+              = @product.location.address
 
-        %p
-          %b Тип площадки:
-          = @product.building.btype
+          %p 
+            Часы работы:
+            %span
+              = @product.start_working
+              = @product.end_working
 
-        %p
-          %b Часы работы:
-          = @product.start_working
-          = @product.end_working
+          %p 
+            Покрытие:
+            %span= @product.cover.ctype
+          %p 
+            Тип площадки:
+            %span= @product.building.btype
+      
 
     .col-md-12
       .row 
