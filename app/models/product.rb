@@ -23,11 +23,11 @@ class Product < ApplicationRecord
   end
 
   def start_working
-    self[:start_working].to_time.in_time_zone('Moscow')
+    new_record? ? self[:start_working] : self[:start_working].to_time.in_time_zone('Moscow')
   end
 
   def end_working
-    self[:end_working].to_time.in_time_zone('Moscow')
+    new_record? ? self[:end_working] : self[:end_working].to_time.in_time_zone('Moscow')
   end
 
   def working_hours

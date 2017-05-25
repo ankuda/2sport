@@ -13,6 +13,7 @@ class BooksController < ApplicationController
     @book = @product.books.new(book_params)
 
     if @book.save
+      Mailer.book_confirmation(@book).deliver
       redirect_to product_book_path(@product, @book), notice: 'Book was successfully created.'
     else
       render :new
@@ -28,6 +29,7 @@ class BooksController < ApplicationController
 
     def book_params
       params.require(:book).permit(:name,
+                                   :email,
                                    :comment,
                                    :product_id,
                                    reservations_attributes: [

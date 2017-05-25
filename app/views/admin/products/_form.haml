@@ -25,8 +25,7 @@
 
     .field
       = f.label :category
-      = f.fields_for :category, object(@product, 'category') do |category_fields|
-        = category_fields.select :title, categories_for_product, {}, {class: 'form-control'}
+      = f.select :category_id, categories_for_product, {}, {class: 'form-control'}
 
     .field
       = f.label :location
@@ -47,13 +46,13 @@
         = location_fields.text_field :address, class: 'form-control'
 
     .field
-      = f.label "Длина"
+      = f.label 'Длина'
       = f.text_field :length, class: 'form-control'
     .field
-      = f.label "Ширина"
+      = f.label 'Ширина'
       = f.text_field :width, class: 'form-control'
     .field
-      = f.label "Высота"
+      = f.label 'Высота'
       = f.text_field :height, class: 'form-control'
       
     .field
