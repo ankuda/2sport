@@ -43,8 +43,6 @@ class BooksController < ApplicationController
       params[:book][:reservations_attributes].each do |k, v|
         params[:book][:reservations_attributes].delete(k) if v[:time].nil?
       end
-
-      binding.pry
     end
 
     def invalid_book
