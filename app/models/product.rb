@@ -7,6 +7,8 @@ class Product < ApplicationRecord
   has_many :reservations
   has_many :books, through: :reservations
 
+  has_many :attachments, dependent: :destroy
+
   accepts_nested_attributes_for :category
   accepts_nested_attributes_for :location
   accepts_nested_attributes_for :cover
