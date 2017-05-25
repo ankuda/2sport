@@ -54,11 +54,8 @@ class Admin::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :description, :price, :start_working, :end_working,
-                                    category_attributes: [
-                                        :id,
-                                        :title
-                                    ],
+    params.require(:product).permit(:title, :description, :price, :start_working, :end_working, :category_id,
+                                    :width, :length, :height,
                                     location_attributes: [
                                         :id,
                                         :address,
@@ -70,12 +67,6 @@ class Admin::ProductsController < ApplicationController
                                             :id,
                                             :title
                                         ]
-                                    ],
-                                    size_attributes: [
-                                        :id,
-                                        :width,
-                                        :length,
-                                        :height
                                     ],
                                     cover_attributes: [
                                         :id,
