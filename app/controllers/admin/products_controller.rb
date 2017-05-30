@@ -23,6 +23,9 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
+      binding.pry
+      params[:images].each { |image| @product.attachments.create(image: image) } if params[:images]
+
       redirect_to [:admin, @product], notice: 'Product was successfully created.'
     else
       render :new
@@ -55,7 +58,7 @@ class Admin::ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:title, :description, :price, :start_working, :end_working, :category_id,
-                                    :width, :length, :height,
+                                    :width, :length, :height, :images,
                                     location_attributes: [
                                         :id,
                                         :address,
